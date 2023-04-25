@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <section class="bg-white dark:bg-gray-900">
+        <div class="max-w-2xl px-4 py-8 mx-auto lg:py-16">
+            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white justify-center align-middle">Win Prediction</h2>
+            <form method="post" action="#">
+                {% csrf_token %}
+                <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
+                    <div>
+                        <label for="batteam" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Batting Team</label>
+                        <select id="batteam" name="batteam" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            {% for team in bat_teams %}
+                            <option value="{{ team }}">{{team}}</option>
+                                {% endfor %}
+                        </select>
+                    </div>
+    
+                    <div>
+                        <label for="bowlteam" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bowling Team</label>
+                        <select id="bowlteam" name="bowlteam" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            {% for team in bowl_teams %}
+                            <option value="{{ team }}">{{team}}</option>
+                                {% endfor %}
+                        </select>
+                    </div>
+    
+                    <div>
+                        <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
+                        <select id="city" name="city" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            {% for city in cities %}
+                            <option value="{{ city }}">{{city}}</option>
+                                {% endfor %}
+                        </select>
+                    </div>
+    
+                    <div class="w-full">
+                        <label for="target" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Target</label>
+                        <input type="number" name="target" id="target" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="0" placeholder="0" required="" mix="0">
+                    </div>
+    
+                    <div class="w-full">
+                        <label for="score" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current Score</label>
+                        <input type="number" name="score" id="score" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="0" placeholder="0" required="" mix="0">
+                    </div>
+    
+                    <div class="w-full">
+                    <label for="wickets" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wickets</label>
+                    <input type="number" name="wickets" id="wickets" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="0" placeholder="0" required="" min="0" max="9">
+                    </div>
+    
+                    <div class="w-full">
+                    <label for="over" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Over</label>
+                    <input type="number" name="over" id="over" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="0" placeholder="0" required="" min="2" max="19">
+                    </div>
+    
+                    <div class="w-full">
+                    <label for="ball" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ball</label>
+                    <input type="number" name="ball" id="ball" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="0" placeholder="0" required="" min="0" max="5">
+                    </div>
+    
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button type="submit" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                        Predict
+                    </button>
+                    <button type="button" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        <svg class="w-5 h-5 mr-1 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                        Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+{% if pred %}
+    <section class="TeamSection bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
+            <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{{output.batteam}}</h2>
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">VS</h2>
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{{output.bowlteam}}</h2>
+
+                <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">{{output.team_name1}} - {{output.score}}/{{output.wickets}} ({{output.over}}.{{output.ball}})  Target - {{output.target}}</p>
+                <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Target - {{output.target}}  CRR - {{output.crr}} RRR - {{output.rrr}}</p>
+            </div> 
+            <div class="flex h-screen justify-center items-center gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <div class="text-center text-gray-500 dark:text-gray-400">
+                    <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="/static/images/WinPrediction/{{output.logo1}}.jpg" alt="Bonnie Avatar">
+                    <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <a href="#">{{output.win}} %</a>
+                    </h3>
+                    <p>{{output.team_name1}}</p>
+                </div>
+                <div class="text-center text-gray-500 dark:text-gray-400">
+                    <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="/static/images/WinPrediction/{{output.logo2}}.jpg" alt="Helene Avatar">
+                    <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <a href="#">{{output.loss}} %</a>
+                    </h3>
+                    <p>{{output.team_name2}}</p>
+                </div>
+            </div>  
+        </div>
+    </section>
+{% endif %}
+  {% endblock content %}

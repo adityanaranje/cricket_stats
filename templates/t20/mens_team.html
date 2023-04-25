@@ -1,0 +1,94 @@
+{% extends "base.html" %} {% block content %}
+
+<section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
+  <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+    <h2
+      class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+    >
+      T20i Mens Team Ranking
+    </h2>
+  </div>
+  <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
+    <!-- Start coding here -->
+    <div
+      class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden"
+    >
+      
+    <div class="inline-flex rounded-md shadow-sm">
+  <a href="/t20/mens_team" aria-current="page" class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+   Mens Team
+  </a>
+  <a href="/t20/womens_team" aria-current="page" class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+    Womens Team
+  </a>
+  <a href="/t20/mens_batting" aria-current="page" class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+    Mens Batting
+  </a>
+  <a href="/t20/womens_batting" aria-current="page" class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+     Womens Batting
+  </a>
+  <a href="/t20/mens_bowling" aria-current="page" class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+    Mens Bowling
+  </a>
+  <a href="/t20/womens_bowling" aria-current="page" class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+    Womens Bowling
+  </a>
+   <a href="/t20/mens_allround" aria-current="page" class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+     Mens All-Rounder
+  </a>
+   <a href="/t20/womens_allround" aria-current="page" class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+    Womens All-Rounder
+  </a>
+</div>
+
+       
+        <div
+          class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
+        >
+          
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table
+          class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+        >
+          <thead
+            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+          >
+            <tr>
+              <th scope="col" class="px-4 py-3">Position</th>
+              <th scope="col" class="px-4 py-3">Team</th>
+              <th scope="col" class="px-4 py-3">Matches</th>
+              <th scope="col" class="px-4 py-3">Points</th>
+              <th scope="col" class="px-4 py-3">Ratings</th>
+              <th scope="col" class="px-4 py-3">
+                <span class="sr-only">Actions</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for value in df %}
+            <tr class="border-b dark:border-gray-700">
+              <td class="px-4 py-3">{{value.Position}}</td>
+              <th
+                scope="row"
+                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {{value.Team}}
+              </th>
+              <td class="px-4 py-3">{{value.Matches}}</td>
+              <td class="px-4 py-3">{{value.Points}}</td>
+              <td class="px-4 py-3">{{value.Ratings}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
